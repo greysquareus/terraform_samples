@@ -1,5 +1,10 @@
 terraform {
   required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+
     digitalocean = {
         source = "digitalocean/digitalocean"
     }
@@ -14,8 +19,11 @@ provider "digitalocean" {
   token = "mytoken"
 }
 
-provider "aws" {
-  region = "us-east-2"
-}
 
 provider "acme" {}
+
+
+resource "aws_instance" "web" {
+  ami = "1245134324"
+  instance_type = "t3.micro"
+}
